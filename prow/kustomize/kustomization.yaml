@@ -1,0 +1,46 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- prow-kubernetes.yaml
+namespace: prow
+configMapGenerator:
+- name: prow-parameters
+  literals:
+  # Update the credentials for the below fields before apply.
+  - github-cert=
+  - github-appid=
+  - hmac-token=
+  - prow-ingress=
+generatorOptions:
+  disableNameSuffixHash: true
+vars:
+- name: github-cert
+  objref:
+    kind: ConfigMap
+    name: prow-parameters
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.github-cert
+- name: hmac-token
+  objref:
+    kind: ConfigMap
+    name: prow-parameters
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.hmac-token
+- name: prow-ingress
+  objref:
+    kind: ConfigMap
+    name: prow-parameters
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.prow-ingress
+- name: github-appid
+  objref:
+    kind: ConfigMap
+    name: prow-parameters
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.github-appid
+configurations:
+- params.yaml
