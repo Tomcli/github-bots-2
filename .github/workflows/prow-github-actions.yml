@@ -28,4 +28,5 @@ jobs:
             /hold 
             /cc 
             /uncc'
-          repo-token: ${{ secrets.OPEN_LABRADOR_BOT_SECRET }}
+          github-token: ${{ secrets.OPEN_LABRADOR_BOT_SECRET }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
