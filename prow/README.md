@@ -6,6 +6,7 @@ The Prow Bot deployment is a modified version based on the [Prow s3 starter](htt
 
 2. Once the credentials are updated, modify any configuration within [kustomize/prow-kubernetes.yaml](kustomize/prow-kubernetes.yaml) if necessary. Then, run the following commands to deploy the Prow Bot on kubernetes.
 ```shell
+kubectl apply --server-side=true -f https://raw.githubusercontent.com/kubernetes/test-infra/master/config/prow/cluster/prowjob-crd/prowjob_customresourcedefinition.yaml
 kubectl apply -k kustomize
 ```
 

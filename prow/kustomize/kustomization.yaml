@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - prow-kubernetes.yaml
-namespace: prow
 configMapGenerator:
 - name: prow-parameters
   literals:
@@ -11,6 +10,7 @@ configMapGenerator:
   - github-appid=
   - hmac-token=
   - prow-ingress=
+  - ingress-tls-secret=
 generatorOptions:
   disableNameSuffixHash: true
 vars:
@@ -42,5 +42,12 @@ vars:
     apiVersion: v1
   fieldref:
     fieldpath: data.github-appid
+- name: ingress-tls-secret
+  objref:
+    kind: ConfigMap
+    name: prow-parameters
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.ingress-tls-secret
 configurations:
 - params.yaml

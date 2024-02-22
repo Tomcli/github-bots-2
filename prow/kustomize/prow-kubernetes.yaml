@@ -496,8 +496,12 @@ spec:
       name: deck
       port:
         number: 80
+  tls:
+  - hosts:
+    - $(prow-ingress)
+    secretName: $(ingress-tls-secret)
   rules:
-  - host: $PROW_HOST
+  - host: $(prow-ingress)
     http:
       paths:
       - path: /
