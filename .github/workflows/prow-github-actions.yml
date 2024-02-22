@@ -10,7 +10,7 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-      - uses: jpmcb/prow-github-actions@v1.1.3
+      - uses: jpmcb/prow-github-actions@3b71ce4
         with:
           prow-commands: '/assign 
             /unassign 
@@ -28,5 +28,5 @@ jobs:
             /hold 
             /cc 
             /uncc'
-          github-token: ${{ secrets.OPEN_LABRADOR_BOT_SECRET }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
