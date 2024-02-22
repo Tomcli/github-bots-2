@@ -10,7 +10,7 @@ kubectl apply --server-side=true -f https://raw.githubusercontent.com/kubernetes
 kubectl apply -k kustomize
 ```
 
-3. As the org admin, please update the [Github Webhook](https://github.com/organizations/open-labrador/settings/hooks) to the following
+3. As the org admin, please update the [Github APP Webhook](https://github.com/organizations/open-labrador/settings/apps/open-labrador-bot) to the following
 ```
 Payload URL: https://$(prow-ingress)/hook
 Content type: application/json
